@@ -1,0 +1,80 @@
+// =====================================================
+// THEME VARIABLES
+// =====================================================
+
+:root {
+  --bg-primary: #F4F9FA;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #EAF2F5;
+  --surface-glass: rgba(255, 255, 255, 0.7);
+  --surface-glass-border: rgba(4, 42, 51, 0.08);
+  --text-primary: #042A33;
+  --text-secondary: #4A6D75;
+  --text-muted: #7A9BA6;
+  --accent-coral: #FF7E67;
+  --accent-coral-hover: #E66A55;
+  --accent-coral-light: rgba(255, 126, 103, 0.1);
+  --accent-tq: #20B2AA;
+  --accent-tq-hover: #1a9a93;
+  --accent-tq-light: rgba(32, 178, 170, 0.1);
+  --border-subtle: rgba(4, 42, 51, 0.1);
+  --border-medium: rgba(4, 42, 51, 0.15);
+  --shadow-soft: 0 12px 40px rgba(4, 42, 51, 0.06);
+  --shadow-medium: 0 8px 24px rgba(4, 42, 51, 0.1);
+  --shadow-glass: 0 8px 32px rgba(32, 178, 170, 0.05);
+  --shadow-hover: 0 20px 60px rgba(4, 42, 51, 0.12);
+  --skeleton-base: #E0EBEF;
+  --skeleton-shine: #F4F9FA;
+  --clr-error: #D32F2F;
+  --clr-success: #2E7D32;
+  --clr-warning: #F9A825;
+  --clr-info: #0288D1;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Outfit', sans-serif;
+  --radius: 12px;
+  --radius-sm: 6px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --transition-fast: 0.15s ease;
+  --transition: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --navbar-height: 72px;
+  --overlay: rgba(4, 42, 51, 0.5);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #021014;
+  --bg-secondary: #061A21;
+  --bg-tertiary: #0A242E;
+  --surface-glass: rgba(6, 26, 33, 0.65);
+  --surface-glass-border: rgba(244, 249, 250, 0.1);
+  --text-primary: #F4F9FA;
+  --text-secondary: #9BB8C2;
+  --text-muted: #6A8A96;
+  --accent-coral: #FF9480;
+  --accent-coral-hover: #FF7E67;
+  --accent-coral-light: rgba(255, 148, 128, 0.12);
+  --accent-tq: #30D5C8;
+  --accent-tq-hover: #20B2AA;
+  --accent-tq-light: rgba(48, 213, 200, 0.1);
+  --border-subtle: rgba(244, 249, 250, 0.08);
+  --border-medium: rgba(244, 249, 250, 0.12);
+  --shadow-soft: 0 16px 48px rgba(0, 0, 0, 0.4);
+  --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-glass: 0 8px 32px rgba(48, 213, 200, 0.08);
+  --shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.6);
+  --skeleton-base: #061A21;
+  --skeleton-shine: #0A242E;
+  --clr-error: #EF5350;
+  --clr-success: #66BB6A;
+  --clr-warning: #FDD835;
+  --clr-info: #29B6F6;
+  --overlay: rgba(0, 0, 0, 0.6);
+}
+
+// Breakpoints
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+$bp-2xl: 1440px;

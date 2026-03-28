@@ -1,0 +1,320 @@
+// =====================================================
+// GLOBAL STYLES
+// =====================================================
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul, ol { list-style: none; }
+
+input, select, textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+::selection {
+  background: var(--accent-tq);
+  color: #fff;
+}
+
+// Utility classes
+.container {
+  @include container;
+}
+
+.section {
+  padding: 4rem 0;
+  @include respond(lg) { padding: 6rem 0; }
+  
+  // Preserve container padding when both classes are used together
+  &.container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    @include respond(lg) {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+}
+
+.section__label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-tq);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.section__title {
+  margin-bottom: 1rem;
+}
+
+.section__subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 560px;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.section__header {
+  margin-bottom: 3rem;
+  @include respond(md) { margin-bottom: 4rem; }
+}
+
+.section__header--center {
+  text-align: center;
+  .section__subtitle { margin-left: auto; margin-right: auto; }
+}
+
+// Grid system
+.grid {
+  display: grid;
+  gap: 1.5rem;
+
+  &--2 { grid-template-columns: 1fr; @include respond(md) { grid-template-columns: repeat(2, 1fr); } }
+  &--3 { grid-template-columns: 1fr; @include respond(md) { grid-template-columns: repeat(2, 1fr); } @include respond(lg) { grid-template-columns: repeat(3, 1fr); } }
+  &--4 {
+    grid-template-columns: repeat(2, 1fr);
+    @include respond(md) { grid-template-columns: repeat(3, 1fr); }
+    @include respond(lg) { grid-template-columns: repeat(4, 1fr); }
+  }
+}
+
+// Keyframe Animations
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideOutRight {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(100%); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes waveMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-tq);
+  border-radius: 3px;
+  &:hover { background: var(--accent-tq-hover); }
+}
+
+// Page wrapper
+.page {
+  min-height: calc(100vh - var(--navbar-height));
+  padding-top: var(--navbar-height);
+}
+
+// Overlay
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+  &--active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+// Rating stars
+.stars {
+  display: flex;
+  gap: 2px;
+  color: #F9A825;
+  svg { width: 16px; height: 16px; }
+  &--sm svg { width: 14px; height: 14px; }
+}
+
+// Badge
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &--sale { background: var(--accent-coral); color: #fff; }
+  &--new { background: var(--accent-tq); color: #fff; }
+  &--bestseller { background: #F9A825; color: #042A33; }
+  &--out { background: var(--text-muted); color: #fff; }
+}
+
+// Spinner
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-subtle);
+  border-top-color: var(--accent-tq);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 2rem auto;
+}
+
+// Empty state
+.empty-state {
+  @include flex-center;
+  flex-direction: column;
+  padding: 4rem 2rem;
+  text-align: center;
+
+  &__icon {
+    width: 80px;
+    height: 80px;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 400px;
+  }
+}
+
+// Page transition wrapper
+.page-enter {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
