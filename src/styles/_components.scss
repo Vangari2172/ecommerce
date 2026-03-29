@@ -2,6 +2,40 @@
 // COMPONENTS
 // =====================================================
 
+// NAVBAR
+.navbar {
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.25rem;
+    font-family: var(--font-heading);
+    transition: color var(--transition);
+
+    &:hover {
+      color: var(--accent-tq);
+    }
+
+    &-img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    span {
+      white-space: nowrap;
+      
+      // Hide text on mobile, show on desktop
+      @media (max-width: 1023px) {
+        display: none;
+      }
+    }
+  }
+}
+
 // BUTTONS
 .btn {
   display: inline-flex;

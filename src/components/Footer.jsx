@@ -77,7 +77,7 @@ export default function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <p>2024 Ocean Harvest. All rights reserved.</p>
+          <p>2026 Bombay Fish Suppliers. All rights reserved.</p>
           <div className="footer__bottom-links">
             <a href="#">Privacy</a>
             <a href="#">Terms</a>

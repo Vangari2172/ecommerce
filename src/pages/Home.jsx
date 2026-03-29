@@ -194,7 +194,7 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <div className="section__header section__header--center">
-            <span className="section__label">Why Ocean Harvest</span>
+            <span className="section__label">Why Bombay Fish Suppliers</span>
             <h2 className="section__title">The Premium Difference</h2>
           </div>
           <div className="why-us__grid">

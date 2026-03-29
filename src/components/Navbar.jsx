@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ShoppingBag, Heart, Search, Sun, Moon, Menu, X, User, ChevronRight } from 'lucide-react';
+import { ShoppingBag, Heart, Search, Sun, Moon, Menu, X, User, ChevronRight, Home, Info, Mail } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext.jsx';
 import { useCart } from '@/context/CartContext.jsx';
 import { useWishlist } from '@/context/WishlistContext.jsx';
@@ -41,8 +41,10 @@ export default function Navbar() {
   const navLinks = [
     { to: '/', label: 'Home' },
     { to: '/products', label: 'Shop' },
-    { to: '/products?category=fresh-fish', label: 'Fresh Fish' },
-    { to: '/products?category=shellfish', label: 'Shellfish' },
+    // { to: '/products?category=fresh-fish', label: 'Fresh Fish' },
+    // { to: '/products?category=shellfish', label: 'Shellfish' },
+    { to: '/about', label: 'About' },
+    { to: '/contact', label: 'Contact' },
   ];
 
   const isActive = (path) => {
@@ -55,7 +57,8 @@ export default function Navbar() {
       <nav ref={navRef} className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} data-testid="navbar">
         <div className="navbar__inner">
           <Link to="/" className="navbar__logo" data-testid="navbar-logo">
-            Ocean<span>Harvest</span>
+            <img src="/src/assets/images/logo.webp" alt="Bombay Fish Suppliers" className="navbar__logo-img" />
+            <span>Bombay Fish Suppliers</span>
           </Link>
 
           <div className="navbar__nav">
@@ -88,7 +91,7 @@ export default function Navbar() {
               aria-label="Wishlist"
             >
               <Heart />
-              {wishlistItems.length > 0 && (
+              {wishlistItems.length >0 && (
                 <span className="navbar__cart-count">{wishlistItems.length}</span>
               )}
             </button>
@@ -100,7 +103,7 @@ export default function Navbar() {
               aria-label="Cart"
             >
               <ShoppingBag />
-              {itemCount > 0 && (
+              {itemCount >0 && (
                 <span className="navbar__cart-count" data-testid="cart-count">{itemCount}</span>
               )}
             </button>
@@ -119,7 +122,6 @@ export default function Navbar() {
               onClick={() => navigate(isAuthenticated ? '/profile' : '/login')}
               data-testid="nav-user-btn"
               aria-label="User"
-              style={{ display: 'none' }}
             >
               <User />
             </button>
@@ -149,15 +151,53 @@ export default function Navbar() {
         </button>
 
         <div className="navbar__mobile-links">
-          {[...navLinks,
-            { to: '/wishlist', label: 'Wishlist' },
-            { to: '/cart', label: 'Cart' },
-            { to: isAuthenticated ? '/profile' : '/login', label: isAuthenticated ? 'Profile' : 'Sign In' },
+          {[
+            { to: '/', label: 'Home', icon: <Home /> },
+            { to: '/products', label: 'Shop', icon: <ShoppingBag /> },
+            { to: '/about', label: 'About', icon: <Info /> },
+            { to: '/contact', label: 'Contact', icon: <Mail /> },
+            { to: '/wishlist', label: 'Wishlist', icon: <Heart />, badge: wishlistItems.length },
+            { to: isAuthenticated ? '/profile' : '/login', label: isAuthenticated ? 'Profile' : 'Sign In', icon: <User /> },
+            { 
+              label: theme === 'dark' ? 'Light Mode' : 'Dark Mode', 
+              icon: theme === 'dark' ? <Sun /> : <Moon />,
+              onClick: toggleTheme 
+            },
           ].map(link => (
-            <Link key={link.to + link.label} to={link.to} data-testid={`mobile-link-${link.label.toLowerCase().replace(/\s/g, '-')}`}>
-              {link.label}
-              <ChevronRight style={{ float: 'right', width: 18, height: 18, opacity: 0.4 }} />
-            </Link>
+            <div key={link.to + link.label} className="navbar__mobile-action">
+              <button
+                onClick={() => {
+                  if (link.onClick) {
+                    link.onClick();
+                  } else {
+                    navigate(link.to);
+                  }
+                  setMobileOpen(false);
+                }}
+                className="navbar__mobile-action-btn"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                  gap: '1rem',
+                  width: '100%',
+                  background: 'none',
+                  border: 'none',
+                  color: 'var(--text-primary)',
+                  fontSize: '1rem',
+                  fontWeight: '500',
+                  textAlign: 'left',
+                  cursor: 'pointer',
+                  padding: '1rem 1.25rem'
+                }}
+              >
+                <span className="navbar__mobile-action-icon">{link.icon}</span>
+                <span className="navbar__mobile-action-text">{link.label}</span>
+                {link.badge > 0 && (
+                  <span className="navbar__mobile-action-badge">{link.badge}</span>
+                )}
+              </button>
+            </div>
           ))}
         </div>
       </div>

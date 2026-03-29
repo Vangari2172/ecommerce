@@ -37,7 +37,7 @@ export default function Auth() {
         <div className="auth__header">
           <h2 className="auth__title">{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
           <p className="auth__subtitle">
-            {isLogin ? 'Sign in to access your account' : 'Join Ocean Harvest for the freshest seafood'}
+            {isLogin ? 'Sign in to access your account' : 'Join Bombay Fish Suppliers for the freshest seafood'}
           </p>
         </div>
 

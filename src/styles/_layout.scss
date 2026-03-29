@@ -46,7 +46,7 @@
     align-items: center;
     gap: 2rem;
 
-    @include respond(lg) {
+    @include respond(md) {
       display: flex;
     }
   }
@@ -85,20 +85,31 @@
 
   &__btn {
     @include flex-center;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     color: var(--text-secondary);
-    transition: background var(--transition-fast), color var(--transition-fast);
+    background: var(--bg-secondary);
+    border: 1.5px solid var(--border-subtle);
+    transition: all var(--transition-fast);
     position: relative;
     @include focus-ring;
 
     &:hover {
       background: var(--accent-tq-light);
       color: var(--accent-tq);
+      border-color: var(--accent-tq);
+      transform: scale(1.05);
     }
 
     svg { width: 20px; height: 20px; }
+
+    // Hide specific buttons on mobile (below 768px)
+    &:not([data-testid="nav-search-btn"]):not([data-testid="nav-cart-btn"]) {
+      @media (max-width: 767px) {
+        display: none;
+      }
+    }
   }
 
   &__cart-count {
@@ -117,30 +128,80 @@
 
   &__theme-toggle {
     @include flex-center;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     color: var(--text-secondary);
-    transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition);
+    background: var(--bg-secondary);
+    border: 1.5px solid var(--border-subtle);
+    transition: all var(--transition-fast), transform var(--transition);
     @include focus-ring;
 
     &:hover {
       background: var(--accent-tq-light);
       color: var(--accent-tq);
+      border-color: var(--accent-tq);
+      transform: scale(1.05) rotate(15deg);
     }
 
-    svg { width: 20px; height: 20px; transition: transform var(--transition); }
+    &:active {
+      transform: scale(0.95);
+    }
+
+    svg { 
+      width: 20px; 
+      height: 20px; 
+      transition: transform var(--transition);
+    }
+
+    // Hide on mobile (below 768px)
+    @media (max-width: 767px) {
+      display: none;
+    }
   }
 
   &__hamburger {
     @include flex-center;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     display: flex;
-    @include respond(lg) { display: none; }
+    background: var(--bg-secondary);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: 12px;
     color: var(--text-primary);
+    transition: all var(--transition-fast);
+    @include focus-ring;
 
-    svg { width: 24px; height: 24px; }
+    // Hide on desktop (768px and above), show on mobile (below 768px)
+    @include respond(md) { 
+      display: none; 
+    }
+
+    &:hover {
+      background: var(--accent-tq-light);
+      color: var(--accent-tq);
+      border-color: var(--accent-tq);
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    svg { 
+      width: 24px; 
+      height: 24px;
+      transition: transform var(--transition);
+    }
+
+    // Mobile enhancement - make more prominent
+    @include respond(sm) {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      
+      svg { width: 26px; height: 26px; }
+    }
   }
 
   // Mobile menu
@@ -148,48 +209,149 @@
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
-    max-width: 360px;
+    width: 85%;
+    max-width: 380px;
     height: 100vh;
     background: var(--bg-secondary);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     z-index: 110;
-    padding: 2rem;
-    transition: right var(--transition);
-    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.15);
+    padding: 1.5rem;
+    transition: right var(--transition), transform var(--transition);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.2);
     overflow-y: auto;
+    border-left: 1px solid var(--border-subtle);
 
     &--open {
       right: 0;
+      transform: translateX(0);
     }
 
     &-close {
       @include flex-center;
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       margin-left: auto;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
+      background: var(--bg-primary);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 12px;
       color: var(--text-primary);
-      svg { width: 24px; height: 24px; }
+      transition: all var(--transition-fast);
+      @include focus-ring;
+
+      &:hover {
+        background: var(--accent-tq-light);
+        color: var(--accent-tq);
+        border-color: var(--accent-tq);
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      svg { 
+        width: 24px; 
+        height: 24px;
+        transition: transform var(--transition);
+      }
     }
 
     &-links {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.75rem;
 
-      a {
-        display: block;
-        padding: 1rem;
-        font-size: 1.1rem;
-        font-weight: 500;
-        color: var(--text-primary);
-        border-radius: var(--radius-sm);
-        transition: background var(--transition-fast);
+      &-action {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background: var(--bg-primary);
+        border: 1px solid var(--border-subtle);
+        border-radius: 12px;
+        transition: all var(--transition-fast);
+        overflow: hidden;
+
+        .navbar__mobile-action .navbar__mobile-action-btn {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: flex-start !important;
+          gap: 1rem;
+          width: 100%;
+          background: none;
+          border: none;
+          color: var(--text-primary);
+          font-size: 1rem;
+          font-weight: 500;
+          text-align: left;
+          cursor: pointer;
+          padding: 1rem 1.25rem;
+          transition: all var(--transition-fast);
+
+          &:hover {
+            background: var(--accent-tq-light);
+            color: var(--accent-tq);
+          }
+
+          &:active {
+            transform: scale(0.98);
+          }
+        }
+
+        &-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 20px;
+          height: 20px;
+          color: var(--text-secondary);
+          transition: color var(--transition-fast);
+          flex-shrink: 0;
+        }
+
+        &-text {
+          flex: 1;
+          font-size: 1rem;
+          font-weight: 500;
+          line-height: 1.2;
+          text-align: left;
+        }
+
+        &-badge {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 18px;
+          height: 18px;
+          background: var(--accent-coral);
+          color: #fff;
+          font-size: 0.65rem;
+          font-weight: 700;
+          border-radius: 50%;
+          padding: 0 4px;
+          margin-left: auto;
+          flex-shrink: 0;
+        }
 
         &:hover {
           background: var(--accent-tq-light);
+          border-color: var(--accent-tq);
+
+          .navbar__mobile-action-icon {
+            color: var(--accent-tq);
+          }
         }
       }
+    }
+
+    // Enhanced mobile header
+    &::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+      margin-bottom: 1.5rem;
     }
   }
 }
