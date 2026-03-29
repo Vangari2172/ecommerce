@@ -57,7 +57,7 @@ export default function Navbar() {
       <nav ref={navRef} className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} data-testid="navbar">
         <div className="navbar__inner">
           <Link to="/" className="navbar__logo" data-testid="navbar-logo">
-            <img src="/src/assets/images/logo.webp" alt="Bombay Fish Suppliers" className="navbar__logo-img" />
+            <img src="/src/assets/images/logo.webp" alt="logo" className="navbar__logo-img" />
             <span>Bombay Fish Suppliers</span>
           </Link>
 
