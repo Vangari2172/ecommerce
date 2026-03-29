@@ -133,9 +133,9 @@ export default function ProductDetail() {
                 </div>
 
                 <div className="product-detail__price" data-testid="product-price">
-                  ${product.price.toFixed(2)}
+                  ₹{product.price.toFixed(2)}
                   {product.originalPrice && (
-                    <span className="product-detail__price-original">${product.originalPrice.toFixed(2)}</span>
+                    <span className="product-detail__price-original">₹{product.originalPrice.toFixed(2)}</span>
                   )}
                 </div>
 
@@ -168,7 +168,7 @@ export default function ProductDetail() {
                     onClick={handleAddToCart}
                     data-testid="add-to-cart-detail-btn"
                   >
-                    <ShoppingBag /> Add to Cart - ${(product.price * qty).toFixed(2)}
+                    <ShoppingBag /> Add to Cart - ₹{(product.price * qty).toFixed(2)}
                   </button>
                   <button
                     className={`product-detail__add-wishlist ${wishlisted ? 'product-detail__add-wishlist--active' : ''}`}

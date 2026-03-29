@@ -212,6 +212,7 @@
     width: 85%;
     max-width: 380px;
     height: 100vh;
+    height: 100dvh; /* Use dynamic viewport height for mobile browsers */
     background: var(--bg-secondary);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -221,6 +222,7 @@
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.2);
     overflow-y: auto;
     border-left: 1px solid var(--border-subtle);
+    overscroll-behavior: contain; /* Prevent body scroll when menu is open */
 
     &--open {
       right: 0;

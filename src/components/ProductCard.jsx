@@ -70,9 +70,9 @@ export default function ProductCard({ product }) {
         <div className="product-card__name">{product.name}</div>
         <div className="product-card__bottom">
           <div className="product-card__price">
-            ${product.price.toFixed(2)}
+            ₹{product.price.toFixed(2)}
             {product.originalPrice && (
-              <span className="product-card__price-original">${product.originalPrice.toFixed(2)}</span>
+              <span className="product-card__price-original">₹{product.originalPrice.toFixed(2)}</span>
             )}
           </div>
           <div className="product-card__rating">

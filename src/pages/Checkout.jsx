@@ -171,22 +171,22 @@ export default function Checkout() {
               {items.map(item => (
                 <div key={`${item.id}-${item.weight}`} className="checkout__summary-item">
                   <span>{item.name} x{item.qty}</span>
-                  <span>${(item.price * item.qty).toFixed(2)}</span>
+                  <span>₹{(item.price * item.qty).toFixed(2)}</span>
                 </div>
               ))}
               {coupon && (
                 <div className="checkout__summary-item" style={{ color: 'var(--clr-success)' }}>
                   <span>Discount ({coupon.label})</span>
-                  <span>-${discount.toFixed(2)}</span>
+                  <span>-₹{discount.toFixed(2)}</span>
                 </div>
               )}
               <div className="checkout__summary-item">
                 <span>Shipping</span>
-                <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+                <span>{shipping === 0 ? 'Free' : `₹${shipping.toFixed(2)}`}</span>
               </div>
               <div className="checkout__summary-total">
                 <span>Total</span>
-                <span>${total.toFixed(2)}</span>
+                <span>₹{total.toFixed(2)}</span>
               </div>
             </div>
           </div>
@@ -270,7 +270,7 @@ export default function Checkout() {
                     onClick={handlePlaceOrder}
                     data-testid="place-order-btn"
                   >
-                    Place Order - ${total.toFixed(2)}
+                    Place Order - ₹{total.toFixed(2)}
                   </button>
                 )}
               </div>

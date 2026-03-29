@@ -77,7 +77,7 @@ export default function Cart() {
                     </button>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <span className="cart-item__price" data-testid={`item-price-${item.id}`}>${(item.price * item.qty).toFixed(2)}</span>
+                    <span className="cart-item__price" data-testid={`item-price-${item.id}`}>₹{(item.price * item.qty).toFixed(2)}</span>
                     <button className="cart-item__remove" onClick={() => { removeItem(item.id, item.weight); addToast(`${item.name} removed from cart`, 'info'); }} data-testid={`remove-item-${item.id}`}>
                       <Trash2 />
                     </button>
@@ -93,24 +93,24 @@ export default function Cart() {
 
             <div className="cart-summary__row">
               <span>Subtotal</span>
-              <span data-testid="subtotal">${subtotal.toFixed(2)}</span>
+              <span data-testid="subtotal">₹{subtotal.toFixed(2)}</span>
             </div>
 
             {coupon && (
               <div className="cart-summary__row" style={{ color: 'var(--clr-success)' }}>
                 <span>Discount ({coupon.label})</span>
-                <span data-testid="discount">-${discount.toFixed(2)}</span>
+                <span data-testid="discount">-₹{discount.toFixed(2)}</span>
               </div>
             )}
 
             <div className="cart-summary__row">
               <span>Shipping</span>
-              <span data-testid="shipping">{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+              <span data-testid="shipping">{shipping === 0 ? 'Free' : `₹${shipping.toFixed(2)}`}</span>
             </div>
 
             <div className="cart-summary__total">
               <span>Total</span>
-              <span data-testid="total">${total.toFixed(2)}</span>
+              <span data-testid="total">₹{total.toFixed(2)}</span>
             </div>
 
             {/* Coupon */}
