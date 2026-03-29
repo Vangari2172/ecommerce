@@ -19,7 +19,7 @@ export default function Footer() {
       <div className="footer__inner">
         <div className="footer__grid">
           <div className="footer__brand">
-            <Link to="/" className="footer__logo">Ocean<span>Harvest</span></Link>
+            <Link to="/" className="footer__logo"><span>Bombay Fish Suppliers</span></Link>
             <p className="footer__desc">
               Premium seafood sourced from the world's cleanest waters. 
               Delivered fresh to your doorstep with care and precision.
